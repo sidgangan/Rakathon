@@ -9,8 +9,8 @@
             "https://www.thesouledstore.com/product/*"
             ],
             "js": ["jquery-3.2.1.min.js","bootstrap.min.js","script.js"],
-            "css": ["bootstrap.min.css","extension_styles.css"],
-            "web_accessible_resources":["img/*.png","img/*.jpg","img/*.jpeg"]
+            "css": ["bootstrap.min.css","font-awesome.min.css","extension_styles.css"],
+            "web_accessible_resources":["images/*.png","images/*.jpg","images/*.jpeg"]
         }
       ]
 }
