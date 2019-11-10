@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "TRY_NOW",
+    "name": "TRY_N_BUY",
     "version": "0.1",
     "content_scripts": [
         {

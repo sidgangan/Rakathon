@@ -126,6 +126,7 @@ window.onload =  function(e){
                     "contentType" : false,
                     "data": form
                     }
+
     
                     $.ajax(settings).done(function (response) {
                         
@@ -147,41 +148,39 @@ window.onload =  function(e){
                                 <div class="modal-body">
                                     <div class="row" style="text-align:center">
                                        
-                                        <center>
-                                        <div class="col-md-4">
-                                        <img id="#" src="`+response.output+`" alt="your image"  height="238" width="184" />
-                                        </div>
-                                        </center>
+                                        
+                                        <img id="#" src="`+response.output+`" alt="your image"  height="256" width="192" style="margin: auto; display:block;"/>
+                                        
                                         
                                     </div>
             
                                     <div style="margin:20px"></div>
             
                                     <div class="row">
-                                        <div class="col-md-4">
-                                        <div class="row">
-                                        <center><img id="#" src="`+response.recommendations[0].image_link+`" alt="your image"  height="238" width="184" /></center>
+                                        <div class="col-md-4" style="text-align:center">
+                                        <div class="row"  >
+                                        <img id="#" src="`+response.recommendations[0].image_link+`" alt="your image"  height="220" width="220" style="margin: auto; display:block;"/>
                                         </div>
                                         <div class="row" style="text-align:center">
-                                        <center><button type="button" onclick="location.href = '`+response.recommendations[0].store_link+`';" class="btn btn-danger" id="link1" style="margin:auto; display:block;">BUY NOW</button></center>
+                                        <button type="button" onclick="location.href = '`+response.recommendations[0].store_link+`';" class="btn btn-danger" id="link1" style="margin:auto; display:block;">BUY NOW</button>
                                         </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-4"  style="text-align:center">
                                         <div class="row">
-                                        <center><img id="#" src="`+response.recommendations[1].image_link+`" alt="your image"  height="238" width="184" /></center>
+                                        <img id="#" src="`+response.recommendations[1].image_link+`" alt="your image"  height="220" width="220" style="margin: auto; display:block;"/>
                                         </div>
-                                        <div class="row" style="text-align:center">
-                                        <center><button type="button" onclick="location.href = '`+response.recommendations[1].store_link+`';" class="btn btn-danger" id="link2" style="margin:auto; display:block;">BUY NOW</button></center>
+                                        <div class="row">
+                                        <button type="button" onclick="location.href = '`+response.recommendations[1].store_link+`';" class="btn btn-danger" id="link2" style="margin:auto; display:block;">BUY NOW</button>
                                         </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-4"  style="text-align:center">
                                         <div class="row">
-                                        <center><img id="#" src="`+response.recommendations[2].image_link+`" alt="your image"  height="238" width="184" /></center>
+                                        <img id="#" src="`+response.recommendations[2].image_link+`" alt="your image"  height="220" width="220" style="margin: auto; display:block;"/>
                                         </div>
-                                        <div class="row" style="text-align:center">
-                                        <center><button type="button" onclick="location.href = '`+response.recommendations[2].store_link+`';" class="btn btn-danger" id="link3" style="margin:auto; display:block;">BUY NOW</button></center>
+                                        <div class="row">
+                                        <button type="button" onclick="location.href = '`+response.recommendations[2].store_link+`';" class="btn btn-danger" id="link3" style="margin:auto; display:block;">BUY NOW</button>
                                         </div>
                                         </div>
                                     </div>
@@ -192,7 +191,8 @@ window.onload =  function(e){
                         parentmodal.classList.add("modal-lg");
                         parentmodal.setAttribute("style",'width:75%; height:60%;');
                         parentmodal.innerHTML = responseimages; 
-                    });             
+                    }
+                    );             
             });
 
     }
