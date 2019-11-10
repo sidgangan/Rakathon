@@ -117,7 +117,7 @@ window.onload =  function(e){
                     }
 
                     var settings = {
-                    "url": "http://localhost:5000/api/infer",
+                    "url": "https://10.99.7.158:5000/api/infer",
                     "method": "POST",
                     "headers": {
                         "accept": "application/json"
@@ -128,9 +128,12 @@ window.onload =  function(e){
                     }
     
                     $.ajax(settings).done(function (response) {
-                    
-                        loading.setAttribute("style","display:none");
+                        
                         console.log(response);
+                        loading.setAttribute("style","display:none");
+                        console.log(response.output);
+                        console.log(response.recommendations[0].image_link);
+                        
 
                         var responseimages = `
                         
@@ -142,29 +145,44 @@ window.onload =  function(e){
                                 </div>
             
                                 <div class="modal-body">
-                                    <div class="row">
+                                    <div class="row" style="text-align:center">
+                                       
+                                        <center>
                                         <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
+                                        <img id="#" src="`+response.output+`" alt="your image"  height="238" width="184" />
                                         </div>
-                                        <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
-                                        </div>
-                                        <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
-                                        </div>
+                                        </center>
+                                        
                                     </div>
             
                                     <div style="margin:20px"></div>
             
                                     <div class="row">
                                         <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
+                                        <div class="row">
+                                        <center><img id="#" src="`+response.recommendations[0].image_link+`" alt="your image"  height="238" width="184" /></center>
                                         </div>
-                                        <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
+                                        <div class="row" style="text-align:center">
+                                        <center><button type="button" onclick="location.href = '`+response.recommendations[0].store_link+`';" class="btn btn-danger" id="link1" style="margin:auto; display:block;">BUY NOW</button></center>
                                         </div>
+                                        </div>
+
                                         <div class="col-md-4">
-                                        <center><img id="#" src="https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20190410122004-1.jpg" alt="your image"  height="238" width="184" /></center>
+                                        <div class="row">
+                                        <center><img id="#" src="`+response.recommendations[1].image_link+`" alt="your image"  height="238" width="184" /></center>
+                                        </div>
+                                        <div class="row" style="text-align:center">
+                                        <center><button type="button" onclick="location.href = '`+response.recommendations[1].store_link+`';" class="btn btn-danger" id="link2" style="margin:auto; display:block;">BUY NOW</button></center>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                        <div class="row">
+                                        <center><img id="#" src="`+response.recommendations[2].image_link+`" alt="your image"  height="238" width="184" /></center>
+                                        </div>
+                                        <div class="row" style="text-align:center">
+                                        <center><button type="button" onclick="location.href = '`+response.recommendations[2].store_link+`';" class="btn btn-danger" id="link3" style="margin:auto; display:block;">BUY NOW</button></center>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
