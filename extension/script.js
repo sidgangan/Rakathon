@@ -4,7 +4,7 @@ window.onload =  function(e){
 
             var target = document.getElementsByClassName("CartsetQty");
             var user_image;
-            var clothing_image;
+            var clothing_image = "https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20191023111943-1.jpg";
             var btn = document.createElement("button");
             btn.innerHTML = "TRY NOW !"
             btn.setAttribute("id","try_now");
@@ -34,7 +34,7 @@ window.onload =  function(e){
                         <label for="fileinput" class="custom-file-upload">
                             <i class="fa fa-cloud-upload"></i> Upload Your Image
                         </label>
-                        <input id="fileinput" type="file" style="display:none;"/>
+                        <input id="fileinput" type="file" name="person" style="display:none;"/>
                     </div>
                     
                     <div class="row content">
@@ -75,33 +75,14 @@ window.onload =  function(e){
             modal.innerHTML = modalhtml;
             target[0].appendChild(btn);
             target[0].appendChild(modal);
-            // function getBase64Image(img) {
-            //     var canvas = document.createElement("canvas");
-            //     console.log(img);
-            //     canvas.width = img.width;
-            //     canvas.height = img.height;
-            //     var ctx = canvas.getContext("2d");
-            //     ctx.drawImage(img, 0, 0);
-            //     var dataURL = canvas.toDataURL("image/jpg");
-            //     console.log(dataURL);
-            //     return dataURL.replace(/^data:image\/(jpg);base64,/, "");
-            //   }
 
             function imageIsLoaded(e) {
-                 user_image = e.target.result;
-                 
-                //   var img = new Image();
-                //   img.src =document.getElementsByClassName("pointer pimg")[0].src;
-                //   var base64 = getBase64Image(img);
-                //   console.log(base64);
-                
+                 user_image = e.target.result;                 
                  clothing_image = document.getElementsByClassName("pointer pimg")[0].src;
                  $('#user-img').attr('src',user_image);
-                 console.log(user_image);
                  $('#user-img').attr('style','display:true');
 
                  $('#clothing-img').attr('src',clothing_image);
-                 console.log(clothing_image);
                  $('#clothing-img').attr('style','display:true');
 
                  $('#plus').attr('src',"https://image.flaticon.com/icons/svg/61/61112.svg");
@@ -113,43 +94,6 @@ window.onload =  function(e){
 
             };
             
-            function uploadFile(file){
-                // var form = new FormData();
-                // form.append("person", "siddheshrane.jpg");
-                // form.append("clothing", "okay.jpg");
-
-                var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://httpbin.org/post",
-                "method": "POST",
-                "headers": {
-                    "accept": "application/json"
-                }//,
-                // "processData": false,
-                // "mimeType": false,
-                // "contentType": "multipart/form-data",
-                // "data": form
-                }
-
-                $.ajax(settings).done(function (response) {
-                console.log(response);
-                });
-
-                // var url = 'https://httpbin.org/post';
-                // var xhr = new XMLHttpRequest();
-                // var fd = new FormData();
-                // xhr.open("POST", url, true);
-                // xhr.onreadystatechange = function() {
-                //     if (xhr.readyState == 4 && xhr.status == 200) {
-                //         // Every thing ok, file uploaded
-                //         console.log(xhr.responseText); // handle response.
-                //     }
-                // };
-                // fd.append("upload_file", file);
-                // xhr.send(fd);
-            }
-
             document.getElementById('fileinput').addEventListener('change', function(){
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();
@@ -163,20 +107,23 @@ window.onload =  function(e){
                     loading.setAttribute("style","display:true");
 
                     var form = new FormData();
-                    form.append("person", user_image);
-                    form.append("clothing", clothing_image);
+                    var person_base64 = document.getElementById("user-img").src;
+                    form.append("person",person_base64);
+                    form.append("clothing", document.getElementsByClassName("pointer pimg")[0].src);
+                    
+                    // Display the key/value pairs
+                    for (var pair of form.entries()) {
+                        console.log(pair[0]+ ', ' + pair[1]); 
+                    }
 
                     var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "https://10.99.7.158:5000/api/infer",
+                    "url": "http://localhost:5000/api/infer",
                     "method": "POST",
                     "headers": {
                         "accept": "application/json"
                     },
                     "processData": false,
-                    "mimeType": false,
-                    "contentType": "multipart/form-data",
+                    "contentType" : false,
                     "data": form
                     }
     
@@ -227,32 +174,7 @@ window.onload =  function(e){
                         parentmodal.classList.add("modal-lg");
                         parentmodal.setAttribute("style",'width:75%; height:60%;');
                         parentmodal.innerHTML = responseimages; 
-                    });
-
-                // var form = new FormData();
-                // form.append("person", user_image);
-                // form.append("clothing", clothing_image);
-
-                // var settings = {
-                // "async": true,
-                // "crossDomain": true,
-                // "url": "http://10.99.7.158:5000/api/infer",
-                // "method": "POST",
-                // "headers": {
-                //     "cache-control": "no-cache",
-                //     "postman-token": "6bb74c4e-86da-7b14-e2f2-3b306e02aa10"
-                // },
-                // "processData": false,
-                // "mimeType": false,
-                // "contentType": "multipart/form-data",
-                // "data": form
-                // }
-
-                // $.ajax(settings).done(function (response) {
-                // console.log(response);
-                // });
-
-                
+                    });             
             });
 
     }
