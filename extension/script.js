@@ -6,7 +6,7 @@ window.onload =  function(e){
             var user_image;
             var clothing_image = "https://images.thesouledstore.com/public/theSoul/uploads/catalog/product/20191023111943-1.jpg";
             var btn = document.createElement("button");
-            btn.innerHTML = "TRY NOW !"
+            btn.innerHTML = "TRY IT ON"
             btn.setAttribute("id","try_now");
             btn.setAttribute("class","btn btn-danger try-button");
             btn.setAttribute("data-toggle","modal");
